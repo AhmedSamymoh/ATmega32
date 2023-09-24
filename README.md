@@ -3,7 +3,7 @@ My ATmega32 drivers journey. Effortlessly integrate microcontroller peripherals.
 
 ## Project Structure
 
-The project is organized into the following directories:
+The driver is structured into the following layers:
 
 ### [MCAL (Microcontroller Abstraction Layer)](MCAL/)
 

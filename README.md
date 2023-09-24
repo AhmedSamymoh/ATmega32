@@ -1,7 +1,7 @@
 # ATmega32 Drivers
-My ATmega32 drivers journey. Effortlessly integrate microcontroller peripherals. Simplify development with clear documentation and modular code for smooth hardware interaction.
+My ATmega32 drivers journey. Integrate microcontroller peripherals smoothly. Simplify development with clear documentation and modular code for smooth hardware interaction.
 
-## Project Structure
+## Layered Architecture
 
 The driver is structured into the following layers:
 

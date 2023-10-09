@@ -1,6 +1,10 @@
 # ATmega32 Drivers
 My ATmega32 drivers journey. Integrate microcontroller peripherals smoothly. Simplify development with clear documentation and modular code for smooth hardware interaction.
 
+<div style="text-align: right; padding-right: 30px;">
+  <img src="Apps/Supplementary/ATmega32-pinout.jpg" alt="Pin Diagram" width="600">
+</div>
+
 ## Layered Architecture
 
 The driver is structured into the following layers:

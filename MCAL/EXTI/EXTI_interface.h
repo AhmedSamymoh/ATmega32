@@ -20,9 +20,10 @@
 
 void GLOBAL_Interrupt_ENABLE();
 void GLOBAL_Interrupt_DISABLE();
-void EXT_Interrupt_Init();
-void EXT_Interrupt_ENABLE(uint8 INT_no);
-void EXT_Interrupt_DISABLE(uint8 INT_no);
-void EXT_Interrupt_Set_Mode(uint8 INT_no , uint8 MODE);
+void EXTI_Interrupt_Init();
+void EXTI_Interrupt_ENABLE(uint8 INT_no);
+void EXTI_Interrupt_DISABLE(uint8 INT_no);
+void EXTI_Interrupt_Set_Mode(uint8 INT_no , uint8 MODE);
+void EXTI_Interrupt_Set_Callback(void (*ptr)(void) , uint8 INT_no);
 
 #endif /* MCAL_EXTI_EXTI_INTERFACE_H_ */

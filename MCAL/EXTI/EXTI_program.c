@@ -6,6 +6,11 @@
  */
 #include "EXTI_interface.h"
 
+void (*INT0_CALLBACK_Ptr)(void) = NULL;
+void (*INT1_CALLBACK_Ptr)(void) = NULL;
+void (*INT2_CALLBACK_Ptr)(void) = NULL;
+
+
 void GLOBAL_Interrupt_ENABLE(){
 	SET_BIT(SREG_Register, I);
 }
@@ -13,7 +18,14 @@ void GLOBAL_Interrupt_DISABLE(){
 	SET_BIT(SREG_Register, I);
 }
 
-void EXT_Interrupt_Init(){
+
+/*******************************************************************************
+ * @brief Initialize the direction of a specific Port
+ *
+ * @parameter PortNo 		Port @(PORT_A , PORT_B , PORT_C ,PORT_D)
+ * @parameter Direction 	Direction Of The Port @(PORT_INPUT , PORT_OUTPUT)
+ ********************************************************************************/
+void EXTI_Interrupt_Init(){
 #if EXTI0_MODE == LOW_LEVEL_MODE
 	CLR_BIT(MCUCR , ISC00);
 	CLR_BIT(MCUCR , ISC01);
@@ -53,7 +65,7 @@ void EXT_Interrupt_Init(){
 #endif
 
 }
-void EXT_Interrupt_ENABLE(uint8 INT_no){
+void EXTI_Interrupt_ENABLE(uint8 INT_no){
 	switch(INT_no)
 	{
 		case EXTI0:
@@ -85,7 +97,7 @@ void EXT_Interrupt_DISABLE(uint8 INT_no){
 				break;
 		}
 }
-void EXT_Interrupt_Set_Mode(uint8 INT_no , uint8 MODE){
+void EXTI_Interrupt_Set_Mode(uint8 INT_no , uint8 MODE){
 	switch(INT_no)
 	{
 		case EXTI0:
@@ -153,3 +165,34 @@ void EXT_Interrupt_Set_Mode(uint8 INT_no , uint8 MODE){
 			break;
 	}
 }
+
+void EXTI_Interrupt_Set_Callback(void (*ptr)(void) , uint8 INT_no){
+	switch(INT_no){
+		case EXTI0:
+			INT0_CALLBACK_Ptr = ptr;
+			break;
+		case EXTI1:
+			INT1_CALLBACK_Ptr = ptr;
+			break;
+		case EXTI2:
+			INT2_CALLBACK_Ptr = ptr;
+			break;
+		default:
+			break;
+	}
+}
+
+
+void __vector_1 (void) __attribute__ ((signal,used, externally_visible)) ;
+    void __vector_1 (void){
+    	INT0_CALLBACK_Ptr();
+}
+void __vector_2 (void) __attribute__ ((signal,used, externally_visible)) ;
+    void __vector_2 (void){
+    	INT1_CALLBACK_Ptr();
+}
+void __vector_3 (void) __attribute__ ((signal,used, externally_visible)) ;
+    void __vector_3 (void){
+    	INT2_CALLBACK_Ptr();
+}
+

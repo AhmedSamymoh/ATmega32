@@ -13,8 +13,7 @@ static void LCD_Send_Enable_Signal();
 /*******************************************************************************
  * @brief Initialize The LCD in 8 bit mode - Cursor off
  ********************************************************************************/
-void LCD_Init(void)
-{
+void LCD_Init(void){
 	/*Initialization of LCD Pins*/
 	DIO_SetPinDirection(LCD_CONTROL_PORT,LCD_RS_PIN,PIN_OUTPUT);
 	DIO_SetPinDirection(LCD_CONTROL_PORT,LCD_RW_PIN,PIN_OUTPUT);
@@ -77,6 +76,31 @@ void LCD_Send_Data(uint8 u8Data)
 	LCD_Send_Enable_Signal();
 }
 
+/*******************************************************************************
+ * @brief Write a Number on LCD
+ * @parameter *Copy_u16Num		(uint16)Number
+ ********************************************************************************/
+void LCD_Send_Number(uint16 Copy_u16Num)
+{
+	uint8 arr[10] , i = 0 , j = 0;
+	if(Copy_u16Num==0)
+	{
+		LCD_Send_Data('0');
+	}
+	else
+	{
+		while (Copy_u16Num)
+		{
+			arr[i] = (Copy_u16Num % 10) +'0';
+			Copy_u16Num = Copy_u16Num / 10;
+			i++;
+		}
+	}
+	for (j=i;j>0;j--)
+	{
+		LCD_Send_Data(arr[j-1]);
+	}
+}
 
 /*******************************************************************************
  * @brief Write a String on LCD
@@ -109,7 +133,7 @@ void LCD_Set_Cursor( uint8 ROW , uint8 COL ){
 }
 
 /*Enable Signal to latch the data in DR or IR*/
-void LCD_Send_Enable_Signal(){
+static void LCD_Send_Enable_Signal(){
 	DIO_SetPinValue(LCD_CONTROL_PORT,LCD_EN_PIN,PIN_HIGH);
 	_delay_ms(3);
 	DIO_SetPinValue(LCD_CONTROL_PORT,LCD_EN_PIN,PIN_LOW);

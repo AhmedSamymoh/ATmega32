@@ -11,7 +11,7 @@
 #define LCD_DATA_PORT 		PORT_C
 #define LCD_CONTROL_PORT  	PORT_D
 
-#define LCD_RS_PIN	 		PIN_4
+#define LCD_RS_PIN	 		PIN_3
 #define LCD_RW_PIN 			PIN_1
 #define LCD_EN_PIN			PIN_0
 

@@ -12,6 +12,7 @@
 #include "../../MCAL/DIO/DIO_interface.h"
 #include "LCD_Confg.h"
 
+
 /* Section: Data Type Declarations */
 
 
@@ -48,6 +49,7 @@
 void LCD_Init();
 void LCD_Send_Command(uint8 u8Command);
 void LCD_Send_Data(uint8 u8Data);
+void LCD_Send_Number(uint16 Copy_u16Num);
 void LCD_Write_String(const uint8 *ptr);
 void LCD_Write_String_Position(const uint8 *ptr , uint8 ROW , uint8 COL);
 void LCD_Set_Cursor(uint8 raw , uint8 column);

@@ -21,9 +21,9 @@ The driver is structured into the following layers:
 
 ### [HAL (Hardware Abstraction Layer)](HAL/)
 
-- [KEYPAD](HAL/KEYPAD/): Keypad control module.
-- [LCD](HAL/LCD/): Character LCD display control module.
-- [SEVEN_SEGMENTS](HAL/SEVEN_SEGMENTS/): Seven-segment display control module.
+- **[KEYPAD](HAL/KEYPAD/): Keypad control module.
+- **[LCD](HAL/LCD/): Character LCD display control module.
+- **[SEVEN_SEGMENTS](HAL/SEVEN_SEGMENTS/): Seven-segment display control module.
 
 ### Application Layer
 

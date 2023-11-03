@@ -294,3 +294,5 @@ uint8 DIO_GetPinValue(uint8 PortNo, uint8 PinNo)
 	}
 	return local_return;
 }
+
+

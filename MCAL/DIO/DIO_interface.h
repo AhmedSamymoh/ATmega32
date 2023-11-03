@@ -12,7 +12,9 @@
 #include "DIO_register.h"
 #include "../../BIT_MATH.h"
 #include "../../STD_TYPES.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /* Section: Data Type Declarations */
 
 

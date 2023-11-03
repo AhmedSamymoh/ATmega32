@@ -17,7 +17,9 @@
 
 
 
-void ADC_Init(void){
+void ADC_Init(uint8 Channel){
+	/*Initialize the pin's Direction to be input*/
+	DIO_SetPinDirection(PORT_A,Channel,PIN_INPUT);
 
 	/*Set Prescaler to be divided by 128 */
 	SET_BIT(ADCSRA , ADCSRA_ADPS0);
@@ -29,22 +31,23 @@ void ADC_Init(void){
 	SET_BIT(ADMUX , ADMUX_REFS0);
 	CLR_BIT(ADMUX , ADMUX_REFS1);
 
+	/* No Interrupt*/
+	CLR_BIT(ADCSRA,ADCSRA_ADIE);
+
 	/*Activate the Result*/
 	CLR_BIT(ADMUX , ADMUX_ADLAR);
 
-	/*Enable Peripheral*/
+	/*Enable ADC Peripheral*/
 	SET_BIT(ADCSRA , ADCSRA_ADEN);
 
 }
 
 uint16 ADC_GetChannelReading(uint8 Channel){
-	DIO_SetPinDirection(PORT_A,Channel,PIN_INPUT);
-
 	/*Clear the MUX bits in ADMUX register */
 	if(Channel >= 0 && Channel <=7){
 		ADMUX &= 0b11100000;
 		ADMUX |= Channel;
-	}else{}
+	}else{/*Nothing*/}
 
 	/*Start Conversion*/
 	SET_BIT(ADCSRA , ADCSRA_ADSC);

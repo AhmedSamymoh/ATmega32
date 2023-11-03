@@ -18,6 +18,8 @@ typedef signed short        sint16;
 typedef signed int          sint32;
 typedef signed long long    sint64;
 
+#define NULL 		(void*)0
+
 
 typedef unsigned char       bool;
 

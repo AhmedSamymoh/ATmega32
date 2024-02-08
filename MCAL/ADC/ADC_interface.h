@@ -35,10 +35,6 @@ void ADC_Init (uint8 Channel);
 
 uint16 ADC_GetChannelReading(uint8 Channel);
 
-uint32 ADC_Mapping( uint32 Range_X_Minimum ,
-					uint32 Range_X_Maximum ,
-					uint32 Range_Y_Minimum ,
-					uint32 Range_Y_Maximum ,
-					uint32 X_Reading);
+uint32 ADC_Mapping(uint32 Range_X_Minimum ,uint32 Range_X_Maximum ,uint32 Range_Y_Minimum ,uint32 Range_Y_Maximum , uint32 X_Reading);
 
 #endif /* MCAL_ADC_ADC_INTERFACE_H_ */

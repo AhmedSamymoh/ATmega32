@@ -9,6 +9,7 @@
 
 static void (*GlobalCallBackPtrCTC)() = NULL;
 static void (*GlobalCallBackPtrOVF)() = NULL;
+static void PWM_SetMode(void);
 
 void TIMER0_Init(void){
 
@@ -60,6 +61,66 @@ void TIMER0_Init(void){
 
 
 
+}
+
+void TIMER0_PWM_Init(uint8 OCRvalue){
+	/*FastPWM Mode*/
+	SET_BIT(TCCR0 , TCCR0_WGM00);
+	SET_BIT(TCCR0 , TCCR0_WGM01);
+
+	PWM_SetMode();
+
+#if INT_SRC == OVF_INT
+	SET_BIT(TIMSK , TIMSK_TOIE0);
+#elif INT_SRC == CTC_MODE
+	SET_BIT(TIMSK , TIMSK_OCIE0);
+
+#else
+#error
+	("WRONG CHOICE OF TIMER SRC");
+
+#endif
+
+#if PRESCALER == DIV_BY_1
+	/*0B11111000*/
+	TCCR0 &= (MASK_VALUE);
+	TCCR0 |= DIV_BY_1;
+#elif PRESCALER == DIV_BY_8
+	TCCR0 &= MASK_VALUE;
+	TCCR0 |= DIV_BY_8;
+#elif PRESCALER == DIV_BY_64
+	TCCR0 &= MASK_VALUE;
+	TCCR0 |= DIV_BY_64;
+#elif PRESCALER == DIV_BY_256
+	TCCR0 &= MASK_VALUE;
+	TCCR0 |= DIV_BY_256;
+#elif PRESCALER == DIV_BY_1024
+	TCCR0 &= MASK_VALUE;
+	TCCR0 |= DIV_BY_1024;
+#else
+#error
+	("WRONG CHOICE OF TIMER FREQ");
+
+#endif
+
+	TIMER0_SetOCRvalue(OCRvalue);
+}
+
+static void PWM_SetMode(void){
+
+#if FAST_PWM_MODE == INVERTED_MODE
+	SET_BIT(TCCR0 , TCCR0_COM00);
+	SET_BIT(TCCR0 , TCCR0_COM01);
+
+#elif FAST_PWM_MODE == NON_INVERTED_MODE
+	CLR_BIT(TCCR0 , TCCR0_COM00);
+	SET_BIT(TCCR0 , TCCR0_COM01);
+
+#else
+#error
+	("WRONG CHOICE OF TIMER FAST PWM");
+
+#endif
 }
 
 void TIMER0_SetOCRvalue(uint8 Value){

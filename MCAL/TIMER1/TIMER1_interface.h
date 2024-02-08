@@ -12,6 +12,7 @@
 #include "../../BIT_MATH.h"
 #include "../../STD_TYPES.h"
 #include "TIMER1_register.h"
+#include "Timer1_config.h"
 
 
 /* Section: Data Type Declarations */
@@ -21,6 +22,7 @@
 #define RISING_EDGE			1
 #define FALLING_EDGE		0
 
+#define MASK_VALUE		0b11111000
 /* Section: Macro Functions Declarations */
 
 /* Section: Function Declarations */

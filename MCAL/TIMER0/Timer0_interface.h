@@ -10,7 +10,6 @@
 
 #include "../../BIT_MATH.h"
 #include "../../STD_TYPES.h"
-//#include "../DIO/DIO_interface.h"
 #include "Timer0_config.h"
 #include "Timer0_register.h"
 
@@ -18,7 +17,7 @@
 void TIMER0_Init(void);
 uint8 TIMER0_SetCallBackCTC( void (*Ptr2Fun)(void) );
 uint8 TIMER0_SetCallBackOVF( void (*Ptr2Fun)(void) );
-
+void TIMER0_PWM_Init(uint8 OCRvalue);
 void TIMER0_SetOCRvalue(uint8 Value);
 void TIMER0_SetPreloadValue(uint8 Value);
 

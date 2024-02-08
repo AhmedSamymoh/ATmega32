@@ -15,48 +15,296 @@
 #include "MCAL/TIMER1/TIMER1_interface.h"
 #include "MCAL/WATCHDOG/WATCHDOG_register.h"
 
-uint8 i = 0 ;
-uint16 periodticks = 0 ;
-uint16 onticks = 0 ;
 
+uint32 Reading = 0;
 
-uint8 pressedKey = KEY_NOT_PRESSED;
+uint16 Analog = 0;
+uint16 Angle = 0;
 
-uint8 Buzzer = PIN_0;
+float V =0.0;
+void main(void)
+{
 
-int main (void){
+	/*OC1A Pin -> PD5*/
+	DIO_SetPinDirection(PORT_D , PIN_5 , PIN_OUTPUT);
 
-	DIO_SetPinDirection(PORT_B , Buzzer , PIN_OUTPUT);
+	LCD_4Bit_Init();
 
-	LCD_Init();
-	KEYPAD_init();
+	ADC_Init(0);
 
+	TIMER1_init();
+
+	TIMER1_Set_OCR_Value(1200);
+
+	LCD_4Bit_Write_String("Servo Test");
+
+	_delay_ms(1000);
 
 
 	while(1){
 
 
-		while(1)
-		{
-			pressedKey = KEYPAD_GetPressedKey();
+		LCD_4Bit_Write_String_Position("                ",2,1);
+		Reading = ADC_GetChannelReading(0);
+		Analog = (Reading*255UL) / 1024;
 
-			if(pressedKey != KEY_NOT_PRESSED)
-			{
-				LCD_Send_Data(pressedKey);
-				DIO_SetPinValue(PORT_B , Buzzer , PIN_HIGH);
-				_delay_ms(200);
-				DIO_SetPinValue(PORT_B , Buzzer , PIN_LOW);
-				_delay_ms(200);
+		Angle = ((140/17) * Analog )+ 450 ;
 
-			}
-			else
-			{
-				/* Do Nothing */
-			}
-		}
+		TIMER1_Set_OCR_Value(Angle);
+
+		LCD_4Bit_Write_String_Position("Angle = ",2,1);
+		Analog = ((Analog*180)/255);
+		LCD_4Bit_Send_Number(Analog);
+
+		LCD_4Bit_Write_String("'");
+
+        _delay_ms(150);
 
 	}
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+//
+//#include "MCAL/DIO/DIO_interface.h"
+//#include "MCAL/EXTI/EXTI_interface.h"
+//#include "MCAL/ADC/ADC_interface.h"
+//#include "HAL/LCD/LCD_Interface.h"
+//#include "HAL/KEYPAD/hal_keyad_interface.h"
+//#include "MCAL/TIMER0/Timer0_interface.h"
+//#include "MCAL/PWM/PWM_interface.h"
+//#include "MCAL/TIMER1/TIMER1_interface.h"
+//#include "MCAL/WATCHDOG/WATCHDOG_register.h"
+//
+//
+//#define CharToNumber(c) ((c) - '0')
+//
+//uint8 i = 0 ;
+//uint16 periodticks = 0 ;
+//uint16 onticks = 0 ;
+//
+//
+//uint8 pressedKey = KEY_NOT_PRESSED;
+//
+//uint8 Buzzer = PIN_0;
+//
+//uint8 firstOperator[6] = {0} ;
+//
+//uint8 Operator = 0 ;
+//
+//uint8 SecondOperator[6] = {0} ;
+//uint8 * Output;
+//uint8 Calc;
+//uint8 OperatorFlag = 0;
+//
+//
+//
+//void NumberToString(uint8 number, uint8 *arr);
+//uint8 String2Number(uint8 *arr);
+//void Restart(void);
+//
+//int main (void){
+//
+//	DIO_SetPinDirection(PORT_B , Buzzer , PIN_OUTPUT);
+//
+//	LCD_Init();
+//	KEYPAD_init();
+//
+//
+//
+//	while(1){
+//
+//		pressedKey = KEYPAD_GetPressedKey();
+//
+//		if(pressedKey != KEY_NOT_PRESSED)
+//		{
+//
+//			DIO_SetPinValue(PORT_B , Buzzer , PIN_HIGH);
+//			_delay_ms(200);
+//			DIO_SetPinValue(PORT_B , Buzzer , PIN_LOW);
+//			_delay_ms(200);
+//
+//			uint8 x = 0;
+//
+//			if(pressedKey != '*' && pressedKey != '/' &&
+//			   pressedKey != '+' && pressedKey != '-' && pressedKey != '#' && pressedKey != '='  ){
+//
+//				firstOperator[x] = CharToNumber(pressedKey);
+//				LCD_Send_Data(pressedKey);
+//				_delay_ms(200);
+//				x++;
+//
+//				if (x > 5){
+//					LCD_Send_Command(_LCD_CLEAR);
+//					LCD_Write_String_Position("Math Error" , 2 , 1);
+//					Restart();
+//				}
+//
+//
+//			}
+//
+//			if (!(pressedKey != '*' && pressedKey != '/' &&
+//					   pressedKey != '+' && pressedKey != '-')){
+//				LCD_Write_String(" ");
+//				Operator = pressedKey;
+//				LCD_Send_Data(pressedKey);
+//				LCD_Write_String(" ");
+//				OperatorFlag = 1;
+//			}
+//
+//			if (pressedKey == '='){
+//				LCD_Send_Command(_LCD_CLEAR);
+//				if (Operator == '+'){
+//					Calc = String2Number(firstOperator) + String2Number(SecondOperator);
+//				}else if(Operator == '-'){
+//					Calc = String2Number(firstOperator) - String2Number(SecondOperator);
+//				}else if(Operator == '/'){
+//					if (String2Number(SecondOperator)){
+//						LCD_Send_Command(_LCD_CLEAR);
+//						LCD_Write_String_Position("Math Error" , 2 , 1);
+//						Restart();
+//					}
+//					Calc = String2Number(firstOperator) / String2Number(SecondOperator);
+//				}else if (Operator == '-'){
+//					Calc = String2Number(firstOperator) * String2Number(SecondOperator);
+//				}else{}
+//
+//				NumberToString(Calc, &Output);
+//				LCD_Write_String_Position('=' , 2 , 1);
+//				LCD_Write_String_Position(Output , 2 , 3);
+//
+//
+//			}
+//
+//
+//			x = 0;
+//			if((OperatorFlag==1)&& pressedKey != '*' && pressedKey != '/' &&
+//			   pressedKey != '+' && pressedKey != '-' && pressedKey != '#' && pressedKey != '='  ){
+//
+//				SecondOperator[x] = CharToNumber(pressedKey);
+//				LCD_Send_Data(pressedKey);
+//				x++;
+//				OperatorFlag = 0;
+//				if (x > 5){
+//					LCD_Send_Command(_LCD_CLEAR);
+//					LCD_Write_String_Position("Math Error" , 2 , 1);
+//					Restart();
+//				}
+//
+//			}
+//
+//
+//			if (pressedKey == '#'){
+//				Restart();
+//			}
+//
+//
+//		}else
+//		{
+//			/* Do Nothing */
+//		}
+//
+//
+//
+//	}
+//}
+//
+//void Restart(void){
+//	LCD_Send_Command(_LCD_CLEAR);
+//	firstOperator[6] = 0 ;
+//	Operator = 0 ;
+//	SecondOperator[6] = 0 ;
+//	Output = 0;
+//}
+//
+//void NumberToString(uint8 number, uint8 *arr) {
+//    uint8 i = 0;
+//
+//    if (number == 0) {
+//        arr[i++] = '0';
+//    }
+//
+//    while (number != 0) {
+//        uint8 digit = number % 10;
+//        arr[i++] = digit + '0';
+//        number /= 10;
+//    }
+//
+//    arr[i] = '\0';
+//
+//    // Reverse the string
+//    uint8 len = i;
+//    for (i = 0; i < len / 2; i++) {
+//        uint8 temp = arr[i];
+//        arr[i] = arr[len - i - 1];
+//        arr[len - i - 1] = temp;
+//    }
+//}
+//
+//uint8 String2Number(uint8 *arr) {
+//    uint8 n = 6, Number = 0, temp = 0;
+//    while (n) {
+//        temp = arr[n - 1] - '0'; // Convert ASCII to numerical value
+//        Number = Number * 10 + temp; // Multiply by 10 and add the digit
+//        n--;
+//    }
+//    return Number;
+//}
+
+
+/*
+ * Voltmeter
+
+	DIO_SetPinDirection(PORT_B , PIN_3 , PIN_OUTPUT);
+	ADC_Init(1);
+	LCD_4Bit_Init();
+
+	TIMER0_PWM_Init(1);
+
+	uint32 Reading = 0;
+
+	uint16 Analog = 0;
+
+	float V =0.0;
+	LCD_4Bit_Send_Command(_LCD_CLEAR);
+	LCD_4Bit_Write_String_Position("Voltage ",1,1);
+	while(1){
+
+
+		LCD_4Bit_Write_String_Position("         ",2,1);
+		Reading = ADC_GetChannelReading(1);
+		Analog = (Reading*5000UL) / 1024;
+
+		V = (float)Analog / 1000.0;
+		TIMER0_SetOCRvalue(V*100/2);
+
+		LCD_4Bit_Set_Cursor(2,1);
+        LCD_4Bit_Send_Number((int8_t)V);  // Display integer part
+        LCD_4Bit_Send_Data('.');
+
+        V = (V - (int8_t)V) * 100.0;
+        LCD_4Bit_Send_Number((int8_t)V);
+
+        LCD_4Bit_Send_Data(' ');
+        LCD_4Bit_Send_Data('V');
+
+
+        _delay_ms(150);
+
+	}
+ *
+ * */
 
 
 
@@ -131,7 +379,7 @@ void HWICU()
  *
  *	SERVO
  *
- *		TIMER1_Set_OCR_Value(450);
+ 		TIMER1_Set_OCR_Value(450);
 		for(uint16 i = 450 ; i <= 2500 ; i++){
 			TIMER1_Set_OCR_Value(i);
 			_delay_ms(1);

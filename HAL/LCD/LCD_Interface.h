@@ -49,10 +49,22 @@
 void LCD_Init();
 void LCD_Send_Command(uint8 u8Command);
 void LCD_Send_Data(uint8 u8Data);
-void LCD_Send_Number(uint16 Copy_u16Num);
+void LCD_Send_Number(int32_t Copy_s32Num);
 void LCD_Write_String(const uint8 *ptr);
-void LCD_Write_String_Position(const uint8 *ptr , uint8 ROW , uint8 COL);
 void LCD_Set_Cursor(uint8 raw , uint8 column);
+void LCD_Write_String_Position(const uint8 *ptr , uint8 ROW , uint8 COL);
+
+
+
+void LCD_4Bit_Init(void);
+void LCD_4Bit_Send_Command(uint8 u8Command);
+void LCD_4Bit_Send_Data(uint8 u8Data);
+void LCD_4Bit_Send_Number(int32_t Copy_s32Num);
+void LCD_4Bit_Write_String(const uint8 *ptr);
+void LCD_4Bit_Set_Cursor( uint8 ROW , uint8 COL );
+void LCD_4Bit_Write_String_Position(const uint8 *ptr , uint8 ROW , uint8 COL);
+
+
 //void LCD_Custom_string();
 
 

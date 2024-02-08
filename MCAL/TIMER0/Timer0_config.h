@@ -14,7 +14,6 @@
 
 #define TIMER_MODE	 	CTC_MODE
 
-
 /*TO CONFIGURE INTERRUPT SOURCE*/
 #define OVF_INT 		0
 #define CTC_INT 	 	1
@@ -29,6 +28,23 @@
 #define DIV_BY_1024		5
 
 #define PRESCALER		DIV_BY_64
+
+/*		PWM Mode		*/
+#define FAST_PWM 		0
+#define PHASE_COR		1
+/*************** TO CONFIGURE PWM MODE ***************/
+#define PWM_Mode		FAST_PWM
+/*****************************************************/
+
+
+
+/*************** TO CONFIGURE FAST PWM ***************/
+#define FAST_PWM_MODE		NON_INVERTED_MODE
+/*****************************************************/
+
+#define INVERTED_MODE 	    0
+#define NON_INVERTED_MODE 	1
+
 
 
 #endif /* MCAL_TIMER0_TIMER0_CONFIG_H_ */

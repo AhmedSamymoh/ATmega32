@@ -69,5 +69,3 @@ uint32 ADC_Mapping(uint32 Range_X_Minimum ,uint32 Range_X_Maximum ,uint32 Range_
 
 	return Y;
 }
-
-

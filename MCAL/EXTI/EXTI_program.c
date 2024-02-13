@@ -15,7 +15,7 @@ void GLOBAL_Interrupt_ENABLE(){
 	SET_BIT(SREG_Register, I);
 }
 void GLOBAL_Interrupt_DISABLE(){
-	SET_BIT(SREG_Register, I);
+	CLR_BIT(SREG_Register, I);
 }
 
 
@@ -81,7 +81,9 @@ void EXTI_Interrupt_ENABLE(uint8 INT_no){
 			break;
 	}
 }
-void EXT_Interrupt_DISABLE(uint8 INT_no){
+
+
+void EXTI_Interrupt_DISABLE(uint8 INT_no){
 	switch(INT_no)
 		{
 			case EXTI0:
@@ -97,6 +99,8 @@ void EXT_Interrupt_DISABLE(uint8 INT_no){
 				break;
 		}
 }
+
+
 void EXTI_Interrupt_Set_Mode(uint8 INT_no , uint8 MODE){
 	switch(INT_no)
 	{

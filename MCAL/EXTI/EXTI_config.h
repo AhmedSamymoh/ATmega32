@@ -10,7 +10,7 @@
 
 /*PreBuild Configuration Modes*/
 #define EXTI0_MODE  	RISING_EDGE_MODE
-#define EXTI1_MODE  	RISING_EDGE_MODE
+#define EXTI1_MODE  	FALLING_EDGE_MODE
 #define EXTI2_MODE  	FALLING_EDGE_MODE
 
 /*Modes*/
@@ -29,6 +29,7 @@
 #define INTF0 		6
 #define INTF1 		7
 #define INTF2 		5
+
 /*Bits of MCUCR Register*/
 #define ISC00		0
 #define ISC01		1

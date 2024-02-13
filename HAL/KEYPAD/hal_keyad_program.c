@@ -8,36 +8,38 @@
 
 #include "hal_keyad_interface.h"
 #include <avr/delay.h>
-#define u8 uint8
 
-//uint8 btn_values[4][4] = {
-//									{'7', '8', '9', '/'},
-//									{'4', '5', '6', '*'},
-//									{'1', '2', '3', '-'},
-//									{'#', '0', '=', '+'}
-//                                 };
 
+/*uint8 btn_values[4][4] = {
+									{'7', '8', '9', '/'},
+									{'4', '5', '6', '*'},
+									{'1', '2', '3', '-'},
+									{'#', '0', '=', '+'}
+                                 };
+*/
 
 uint8 btn_values[4][4] = {
-	{7,8,9,'/'},
-	{4,5,6,'*'},
-	{1,2,3,'-'},
-	{'c',0,'=','+'}
+							{ 7 , 8 , 9 , '/'},
+							{ 4 , 5 , 6 , '*'},
+							{ 1 , 2 , 3 , '-'},
+							{'c', 0 ,'=', '+'}
 };
+
+uint8 L_ColumnArr[4] = {COLUMN0_PIN ,COLUMN1_PIN ,COLUMN2_PIN ,COLUMN3_PIN};
+uint8 L_RowArr[4] = {ROW0_PIN ,ROW1_PIN ,ROW2_PIN ,ROW3_PIN};
 void KEYPAD_init(void){
 
 	uint8 i;
-	for(i = OUTPUT_START; i <= OUTPUT_END ; i++)
+	for(i = 0; i < 4 ; i++)
 	{
 		/*Initialize Columns as an Output pins*/
-		DIO_SetPinDirection(KEYPAD_PORT , i , PIN_OUTPUT);
-		DIO_SetPinValue(KEYPAD_PORT , i , PIN_HIGH);
+		DIO_SetPinDirection(KEYPAD_PORT , L_ColumnArr[i] , PIN_OUTPUT);
 	}
-	for(i = INPUT_START; i <= INPUT_END ; i++)
+	for(i = 0; i < 4 ; i++)
 	{
 		/*Initialize Rows Pins as Internal Pull Up*/
-		DIO_SetPinDirection(KEYPAD_PORT , i , PIN_INPUT);
-		DIO_SetPinValue(KEYPAD_PORT , i , PIN_HIGH);
+		DIO_SetPinDirection(KEYPAD_PORT , L_RowArr[i] , PIN_INPUT);
+		DIO_SetPinValue(KEYPAD_PORT ,L_RowArr[i], PIN_HIGH);
 	}
 }
 
@@ -45,8 +47,10 @@ uint8 KEYPAD_GetPressedKey(void)
 {
 	uint8  L_PressedKey = KEY_NOT_PRESSED , L_State;
 	uint8 L_ColumnIndex = 0 , L_RowIndex = 0;
+
 	static uint8 L_ColumnArr[4] = {COLUMN0_PIN ,COLUMN1_PIN ,COLUMN2_PIN ,COLUMN3_PIN};
 	static uint8 L_RowArr[4] = {ROW0_PIN ,ROW1_PIN ,ROW2_PIN ,ROW3_PIN};
+
 
 	for(L_ColumnIndex = 0 ; L_ColumnIndex < 4 ; L_ColumnIndex++)
 	{

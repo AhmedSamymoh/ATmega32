@@ -33,17 +33,17 @@
 #define PIN_6		6
 #define PIN_7		7
 
-#define PORT_INPUT		0x00
-#define PORT_OUTPUT		0xFF
+#define PORT_INPUT			0x00
+#define PORT_OUTPUT			0xFF
 
-#define PORT_LOW		0x00
-#define PORT_HIGH		0xFF
+#define PORT_LOW			0x00
+#define PORT_HIGH			0xFF
 
-#define PIN_INPUT		0x00
-#define PIN_OUTPUT		0x01
+#define PIN_INPUT			0x00
+#define PIN_OUTPUT			0x01
 
-#define PIN_LOW			0x00
-#define PIN_HIGH		0x01
+#define PIN_LOW				0x00
+#define PIN_HIGH			0x01
 
 
 /* Section: Macro Functions Declarations */
@@ -57,6 +57,7 @@ uint8 DIO_GetPortValue(uint8 PortNo);
 /*--------- PIN ---------*/
 void  DIO_SetPinDirection(uint8 PortNo , uint8 PinNo , uint8 Direction);
 void  DIO_SetPinValue(uint8 PortNo , uint8 PinNo , uint8 Value);
+void  DIO_SetPinInputPullup(uint8 PortNo , uint8 PinNo);
 void DIO_TogPinValue(uint8 PortNo, uint8 PinNo);
 uint8 DIO_GetPinValue(uint8 PortNo, uint8 PinNo);
 

@@ -110,7 +110,7 @@ uint8 DIO_GetPortValue(uint8 PortNo)
  *
  * @parameter PortNo 		Port @(PORT_A , PORT_B , PORT_C ,PORT_D)
  * @parameter PinNo 		Pin Port @(PIN_0 - PIN_7)
- * @parameter Direction 	Direction Of The Port @(PORT_HIGH , PORT_LOW)
+ * @parameter Direction 	Direction Of The Port @(PIN_OUTPUT , PIN_INPUT)
  ********************************************************************************/
 void  DIO_SetPinDirection(uint8 PortNo , uint8 PinNo , uint8 Direction)
 {
@@ -164,6 +164,43 @@ void  DIO_SetPinDirection(uint8 PortNo , uint8 PinNo , uint8 Direction)
 		}
 	}else{
 
+	}
+
+}
+
+/*******************************************************************************
+ * @brief Set a specific Pin Input Pull up
+ *
+ * @parameter PortNo 		Port @(PORT_A , PORT_B , PORT_C ,PORT_D)
+ * @parameter PinNo 		Pin Port @(PIN_0 - PIN_7)
+ ********************************************************************************/
+void  DIO_SetPinInputPullup(uint8 PortNo , uint8 PinNo)
+{
+	if( (PinNo >= PIN_0) && (PinNo <= PIN_7) && (PortNo >= PORT_A) && (PortNo <= PORT_D) ) // Validation
+	{
+		switch(PortNo)
+		{
+			case PORT_A:
+					CLR_BIT(DDRA_register , PinNo);
+					SET_BIT(PORTA_register , PinNo);
+				break;
+			case PORT_B:
+					CLR_BIT(DDRB_register , PinNo);
+					SET_BIT(PORTB_register , PinNo);
+				break;
+			case PORT_C:
+					CLR_BIT(DDRC_register , PinNo);
+					SET_BIT(PORTC_register , PinNo);
+				break;
+			case PORT_D:
+					CLR_BIT(DDRD_register , PinNo);
+					SET_BIT(PORTD_register , PinNo);
+				break;
+			default:
+				break;
+		}
+	}else{
+		/*Nothing*/
 	}
 
 }

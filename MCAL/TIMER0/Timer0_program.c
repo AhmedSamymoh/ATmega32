@@ -59,11 +59,12 @@ void TIMER0_Init(void){
 
 #endif
 
-
-
 }
 
 void TIMER0_PWM_Init(uint8 OCRvalue){
+	/*OC0 Pin -> PB3*/
+	DIO_SetPinDirection(PORT_B , PIN_3 , PIN_OUTPUT);
+
 	/*FastPWM Mode*/
 	SET_BIT(TCCR0 , TCCR0_WGM00);
 	SET_BIT(TCCR0 , TCCR0_WGM01);

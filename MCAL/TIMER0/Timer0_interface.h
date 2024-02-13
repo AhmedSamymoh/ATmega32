@@ -12,6 +12,8 @@
 #include "../../STD_TYPES.h"
 #include "Timer0_config.h"
 #include "Timer0_register.h"
+#include "../../MCAL/DIO/DIO_interface.h"
+
 
 
 void TIMER0_Init(void);

@@ -63,9 +63,11 @@ uint16 ADC_GetChannelReading(uint8 Channel){
 
 uint32 ADC_Mapping(uint32 Range_X_Minimum ,uint32 Range_X_Maximum ,uint32 Range_Y_Minimum ,uint32 Range_Y_Maximum , uint32 X_Reading){
 
+	uint32 ratio = (Range_Y_Maximum - Range_Y_Minimum)  / (Range_X_Maximum - Range_X_Minimum);
+
 	uint32 Y ;
 
-	Y = ((( (X_Reading - Range_X_Minimum)*(Range_Y_Maximum - Range_Y_Minimum) ) / (Range_X_Maximum - Range_X_Minimum)) + Range_Y_Minimum);
+	Y = (( (X_Reading - Range_X_Minimum) * ratio) + Range_Y_Minimum);
 
 	return Y;
 }

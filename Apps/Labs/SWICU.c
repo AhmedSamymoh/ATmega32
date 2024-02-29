@@ -43,15 +43,14 @@ void issr() {
         OnTime = TIMER1_Read_TCNT_Value();
         OnTime = OnTime - PeriodTime;
         EXTI_Interrupt_Set_Mode(EXTI0 , RISING_EDGE_MODE);
-        Freq = 1.0/(PeriodTime * 0.000001);
-        DutyCycle = (OnTime * 100)/ PeriodTime;
-
     }else {
-
+    	counter = 0;
     }
 
 
 }
+
+uint16 PWM = 0;
 
 int main(void)
 {
@@ -64,21 +63,33 @@ int main(void)
 	EXTI_Interrupt_ENABLE(EXTI0);
 	EXTI_Interrupt_Set_Callback(issr , EXTI0);
 
-	TIMER0_PWM_Init(125);
+	TIMER0_PWM_Init(130);
 
 	TIMER1_init();
 
-
-
+	ADC_Init(0);
 
 	while(1){
+		LCD_4Bit_Send_Command(1);
+		LCD_4Bit_Write_String_Position("Freq:" , 1 , 1);
+		LCD_4Bit_Write_String_Position("Hz" , 1 , 12);
+		LCD_4Bit_Write_String_Position("DutyCycle:" , 2 , 1);
+		LCD_4Bit_Write_String_Position("%" , 2 , 15);
+
+		Analog = ADC_GetChannelReading(0);
+		PWM = (Analog*255UL) / 1024;
+
+		TIMER0_PWM_Init(PWM);
+
 		if((OnTime == 0)&& (PeriodTime == 0));
 		else{
+		    Freq = 1.0/(PeriodTime * 0.000001);
+		    DutyCycle = (OnTime * 100)/ PeriodTime;
 
-			LCD_4Bit_Set_Cursor(1 , 1 );
-			LCD_4Bit_Send_Number(DutyCycle);
-			LCD_4Bit_Set_Cursor(2, 1 );
+			LCD_4Bit_Set_Cursor(1 , 7 );
 			LCD_4Bit_Send_Number(Freq);
+			LCD_4Bit_Set_Cursor(2, 12);
+			LCD_4Bit_Send_Number(DutyCycle);
 			_delay_ms(1000);
 		}
 
@@ -86,4 +97,3 @@ int main(void)
 
 	}
 }
-

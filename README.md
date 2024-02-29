@@ -17,7 +17,7 @@ The driver is structured into the following layers:
 - **[PWM](MCAL/PWM/):** Pulse Width Modulation Module
 - **[TIMER0](MCAL/TIMER0/):** TIMER/Counter 0 Module
 - **[TIMER1](MCAL/TIMER1/):** TIMER/Counter 1 and ICU Module
-- **[TIMER2](MCAL/TIMER1/):** TIMER/Counter 1 and ICU Module
+- **[TIMER2](MCAL/TIMER1/):** TIMER/Counter 2 Module
 - **[WATCHDOG](MCAL/WATCHDOG/):** WatchDog Timer Module
 
 ### [HAL (Hardware Abstraction Layer)](HAL/)

@@ -21,13 +21,23 @@
 
 
 
-/*		PWM Mode		*/
-#define FAST_PWM 		0
-#define PHASE_COR		1
+/*************** TO CONFIGURE PWM MODE ***************/
+#define TIMER1_MODE		TIMER1_NORMAL
+/*****************************************************/
+/*		TIMER1 MODE		*/
+#define TIMER1_NORMAL	 		0
+#define TIMER1_COUNTER			1
+#define TIMER1_CTC				4
+#define TIMER1_PWM_SERVO     	14
+
+
 
 /*************** TO CONFIGURE PWM MODE ***************/
 #define TIMER1_PWM_Mode		FAST_PWM
 /*****************************************************/
+/*		PWM Mode		*/
+#define FAST_PWM 		0
+#define PHASE_COR		1
 
 
 

@@ -28,6 +28,7 @@
 /* Section: Function Declarations */
 
 void TIMER1_init(void);
+uint8 TIMER1_SetCallBackOVF( void (*Ptr2Fun)(void) );
 void TIMER1_Set_OCR_Value(uint16 value);
 void TIMER1_Set_TCNT_Value(uint16 value);
 uint16 TIMER1_Read_TCNT_Value();
@@ -37,7 +38,7 @@ void HWICU_EdgeSelect(uint8 Edge);
 void HWICU_InterruptEnable(void);
 void HWICU_InterruptDisable(void);
 void HWICU_SetCallBack(void (*ptr2fun)(void));
-uint8 HWICU_ReadTicks(void);
+uint16 HWICU_ReadTicks(void);
 
 
 

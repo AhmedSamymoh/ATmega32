@@ -24,6 +24,8 @@
 #define  TCCR1B 		 *( (volatile uint8 *)(0x4E) )
 #define  TCCR1B_ICNC1		7
 /* Input Capture Edge Select*/
+
+#define  TCCR1B_ICNC1		7
 #define  TCCR1B_ICES1		6
 #define  TCCR1B_WGM13		4
 #define  TCCR1B_WGM12		3
@@ -40,10 +42,16 @@
 #define  ICR1 		     *( (volatile uint16 *)(0x46) )
 
 /*TIMSK  -  Timer/Counter Interrupt Mask Register*/
-
 #define TIMSK			*((volatile uint8 *)(0x59))
 /*Input Capture Interrupt Enable*/
 #define  TIMSK_TICIE1		5
+/*OCIE1A: Output Compare A Match Interrupt Enable*/
+#define  TIMSK_OCIE1A		4
+/*OCIE1B: Output Compare B Match Interrupt Enable */
+#define  TIMSK_OCIE1B		3
+/*TOIE1: Timer/Counter1, Overflow Interrupt Enable*/
+#define  TIMSK_TOIE1		2
+
 
 
 

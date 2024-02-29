@@ -71,17 +71,6 @@ void TIMER0_PWM_Init(uint8 OCRvalue){
 
 	PWM_SetMode();
 
-#if INT_SRC == OVF_INT
-	SET_BIT(TIMSK , TIMSK_TOIE0);
-#elif INT_SRC == CTC_MODE
-	SET_BIT(TIMSK , TIMSK_OCIE0);
-
-#else
-#error
-	("WRONG CHOICE OF TIMER SRC");
-
-#endif
-
 #if PRESCALER == DIV_BY_1
 	/*0B11111000*/
 	TCCR0 &= (MASK_VALUE);

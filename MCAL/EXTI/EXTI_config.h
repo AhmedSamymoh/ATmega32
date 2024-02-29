@@ -10,8 +10,8 @@
 
 /*PreBuild Configuration Modes*/
 #define EXTI0_MODE  	RISING_EDGE_MODE
-#define EXTI1_MODE  	FALLING_EDGE_MODE
-#define EXTI2_MODE  	FALLING_EDGE_MODE
+#define EXTI1_MODE  	RISING_EDGE_MODE
+#define EXTI2_MODE  	RISING_EDGE_MODE
 
 /*Modes*/
 #define LOW_LEVEL_MODE		0

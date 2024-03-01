@@ -19,7 +19,8 @@ The driver is structured into the following layers:
 - **[TIMER1](MCAL/TIMER1/):** TIMER/Counter 1 and ICU Module
 - **[TIMER2](MCAL/TIMER1/):** TIMER/Counter 2 Module
 - **[WATCHDOG](MCAL/WATCHDOG/):** WatchDog Timer Module
-
+- **[USART](MCAL/USART/):**USART Communication Protocol Module
+  
 ### [HAL (Hardware Abstraction Layer)](HAL/)
 
 - **[LCD](HAL/LCD/):** Character LCD display control module.

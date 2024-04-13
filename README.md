@@ -30,6 +30,8 @@ The driver is structured into the following layers:
 - **[IR SENSOR](HAL/IR_SENSOR/):** Infrared Sensor module.
 - **[STEPPER MOTOR](HAL/STEPPER_MOTOR/):** Stepper Motor control module.
 
+### [RTOS STACK (Real Time Operating System Stack)](RTOS_STACK/)
+
 ### Application Layer
 
 - [main.c](main.c): Main application code file.

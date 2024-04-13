@@ -16,49 +16,14 @@
 #include "MCAL/WATCHDOG/WATCHDOG_register.h"
 
 
-uint32 Reading = 0;
 
-uint16 Analog = 0;
-uint16 Angle = 0;
-
-float V =0.0;
 void main(void)
 {
 
-	/*OC1A Pin -> PD5*/
-	DIO_SetPinDirection(PORT_D , PIN_5 , PIN_OUTPUT);
-
-	LCD_4Bit_Init();
-
-	ADC_Init(0);
-
-	TIMER1_init();
-
-	TIMER1_Set_OCR_Value(1200);
-
-	LCD_4Bit_Write_String("Servo Test");
-
-	_delay_ms(1000);
 
 
 	while(1){
 
-
-		LCD_4Bit_Write_String_Position("                ",2,1);
-		Reading = ADC_GetChannelReading(0);
-		Analog = (Reading*255UL) / 1024;
-
-		Angle = ((140/17) * Analog )+ 450 ;
-
-		TIMER1_Set_OCR_Value(Angle);
-
-		LCD_4Bit_Write_String_Position("Angle = ",2,1);
-		Analog = ((Analog*180)/255);
-		LCD_4Bit_Send_Number(Analog);
-
-		LCD_4Bit_Write_String("'");
-
-        _delay_ms(150);
 
 	}
 

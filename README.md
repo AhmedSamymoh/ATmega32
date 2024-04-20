@@ -39,4 +39,4 @@ The driver is structured into the following layers:
 - [BIT_MATH.h](BIT_MATH.h): Header file for bitwise manipulation functions.
 
 ## Contributing
-Please feel free to open issues or pull requests to help improve and expand the drivers.
+Please  pull requests to help improve and expand the drivers.

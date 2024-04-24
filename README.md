@@ -21,6 +21,7 @@ The driver is structured into the following layers:
 - **[WATCHDOG](MCAL/WATCHDOG/):** WatchDog Timer Module
 - **[USART](MCAL/USART/):** USART Communication Protocol Module
 - **[SPI](MCAL/SPI/):** SPI Communication Protocol Module
+- **[I2C](MCAL/I2C/):** I2C Communication Protocol Module
   
 ### [HAL (Hardware Abstraction Layer)](HAL/)
 

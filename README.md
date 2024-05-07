@@ -22,7 +22,7 @@ The driver is structured into the following layers:
 - **[USART](MCAL/USART/):** USART Communication Protocol Module
 - **[SPI](MCAL/SPI/):** SPI Communication Protocol Module
 - **[I2C](MCAL/I2C/):** I2C Communication Protocol Module
-  
+---
 ### [HAL (Hardware Abstraction Layer)](HAL/)
 
 - **[LCD](HAL/LCD/):** Character LCD display control module.
@@ -30,10 +30,11 @@ The driver is structured into the following layers:
 - **[SEVEN_SEGMENTS](HAL/SEVEN_SEGMENTS/):** Seven-segment display control module.
 - **[IR SENSOR](HAL/IR_SENSOR/):** Infrared Sensor module.
 - **[STEPPER MOTOR](HAL/STEPPER_MOTOR/):** Stepper Motor control module.
-
+---
 ### [RTOS STACK (Real Time Operating System Stack)](RTOS_STACK/)
+---
+### [FreeRTOS_Project](FreeRTOS_Project/)
 
-### [FreeRTOS_Project)](FreeRTOS_Project/)
 ### Application Layer
 
 - [main.c](main.c): Main application code file.

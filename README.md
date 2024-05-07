@@ -33,6 +33,7 @@ The driver is structured into the following layers:
 
 ### [RTOS STACK (Real Time Operating System Stack)](RTOS_STACK/)
 
+### [FreeRTOS_Project)](FreeRTOS_Project/)
 ### Application Layer
 
 - [main.c](main.c): Main application code file.

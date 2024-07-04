@@ -25,6 +25,12 @@
 void USART_Init();
 uint8 USART_u8ReceiveData();
 void USART_voidSendData(uint8 Data);
+void USART_voidSendString(uint8 * str);
+
+uint8 USART_ReceiveData_Asynch();
+void USART_SendData_Asynch(uint8 Data);
+void USART_ReceiveString_Asych(uint8 * str);
+void USART_SendString_Asych(uint8 * str);
 
 void USART_RX_InterruptEnable();
 void USART_RX_InterruptDisable();

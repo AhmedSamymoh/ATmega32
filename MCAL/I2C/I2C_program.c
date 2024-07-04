@@ -24,8 +24,6 @@ void I2C_voidMasterInit(void){
 	CLR_BIT(TWSR, TWSR_TWPS0);
 	CLR_BIT(TWSR, TWSR_TWPS1);
 
-
-
 	/*Enable TWI Peripheral (I2C)*/
 	SET_BIT(TWCR, TWCR_TWEN);
 
@@ -144,7 +142,7 @@ I2C_ErrStatus I2C_MasterReadDataByte(uint8 * DataByte){
 	I2C_ErrStatus Local_ErrStatus = NoError;
 
 	/*Enable Master ACK*/
-	SET_BIT(TWCR,TWCR_TWEA)
+	SET_BIT(TWCR,TWCR_TWEA);
 
 	/* Clear the interrupt flag to Allow the Slave to send Data*/
 	SET_BIT(TWCR ,TWCR_TWINT);

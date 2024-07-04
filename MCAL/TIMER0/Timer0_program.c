@@ -146,14 +146,17 @@ uint8 TIMER0_SetCallBackOVF( void (*Ptr2Fun)(void) ){
 }
 
 
-
-void __vector_10(void) __attribute__((signal));
-void __vector_10(void){
-	GlobalCallBackPtrCTC();
-}
-
 /*ISR OVF MODE*/
 void __vector_11(void) __attribute__((signal));
 void __vector_11(void){
 	GlobalCallBackPtrOVF();
 }
+
+
+/* RTOS use it
+void __vector_10(void) __attribute__((signal));
+void __vector_10(void){
+	GlobalCallBackPtrCTC();
+}
+
+*/

@@ -46,7 +46,7 @@ void SPI_voidSlave_Init(void){
 	/*MOSI*/
 	DIO_SetPinDirection(PORT_B,PIN_5,PIN_INPUT);
 	/*SS*/
-	DIO_SetPinDirection(PORT_B,PIN_4,PIN_INPUT);      .L,.LL
+	DIO_SetPinDirection(PORT_B,PIN_4,PIN_INPUT);
 
 	/*Slave Initialization*/
 	CLR_BIT(SPCR,SPCR_MSTR);

@@ -30,6 +30,7 @@ The driver is structured into the following layers:
 - **[SEVEN_SEGMENTS](HAL/SEVEN_SEGMENTS/):** Seven-segment display control module.
 - **[IR SENSOR](HAL/IR_SENSOR/):** Infrared Sensor module.
 - **[STEPPER MOTOR](HAL/STEPPER_MOTOR/):** Stepper Motor control module.
+- **[EEPROM](HAL/EEPROM/):** Interface EEPROM 24C08  module.
 ---
 ### [RTOS STACK (Real Time Operating System Stack)](RTOS_STACK/)
 ---
